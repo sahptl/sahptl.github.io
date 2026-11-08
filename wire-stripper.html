@@ -32,25 +32,34 @@
     <h1>Automated wire stripper</h1>
     <p class="lead">A bench-top machine that feeds wire off a spool in 0.4 mm increments and closes two hand strippers through stepper-driven linkages.</p>
   </div>
-  <dl class="titleblock"><dt>When</dt><dd>Summer 2026</dd><dt>Where</dt><dd>University mechatronics lab</dd><dt>Firmware</dt><dd>AVR C, register level</dd><dt>Feed increment</dt><dd>0.4 mm</dd></dl>
+  <dl class="titleblock"><dt>When</dt><dd>Summer 2026</dd><dt>Where</dt><dd>University mechatronics lab</dd></dl>
 </div>
 
 <figure><a class="zoom" href="wire-stripper-hero-1600.jpg"><img src="wire-stripper-hero-900.jpg" width="900" height="450" alt="Bench-top wire stripper on a wooden base: a wire spool on the right, red 3D-printed feed rollers in the middle, and two blue-handled hand strippers on printed linkages at the left." srcset="wire-stripper-hero-900.jpg 900w, wire-stripper-hero-1600.jpg 1600w" sizes="(min-width: 72rem) 68rem, 100vw" fetchpriority="high"></a><figcaption><b>Figure 1.</b> Wire runs from the spool (right) through the feed rollers and guide tubes to the strippers (left).</figcaption></figure>
 
 <section class="section">
   <div class="prose">
+    <h2>From concept sketch to build</h2>
+    <p>The first idea was a strip-then-cut line with three powered feed roller stations and a servo-driven linkage on each tool. The build kept the linkage-driven tools but switched to stepper motors and a single feed station.</p>
+  </div>
+  <figure class="fig-medium"><a class="zoom" href="wire-stripper-concept.png"><img src="wire-stripper-concept.png" width="975" height="353" alt="Hand-drawn concept sketch: a wire spool feeding through three pairs of powered feed rollers, a servo and linkage stripper, a servo and linkage cutter, and a collection bin, with labels for the switch, potentiometer, LCD display, and controllers." loading="lazy"></a><figcaption><b>Figure 2.</b> Early concept sketch.</figcaption></figure>
+</section>
+
+<section class="section">
+  <div class="prose">
     <h2>How it works</h2>
     <p>A stepper drives a pair of rubber-banded pinch rollers that pull wire off the spool and push it through guide tubes to the strippers. Two more steppers on a printed frame drive the linkages that close the stripper handles. I sized the motors and drivers from a torque-speed analysis.</p>
   </div>
-  <figure class="fig-small"><a class="zoom" href="wire-stripper-frame-1210.jpg"><img src="wire-stripper-frame-800.jpg" width="800" height="382" alt="Top view of a red 3D-printed frame on a wooden base, holding two stepper motors with shaft couplers and printed linkage arms between them." srcset="wire-stripper-frame-800.jpg 800w, wire-stripper-frame-1210.jpg 1210w" sizes="(min-width: 40rem) 36rem, 100vw" loading="lazy"></a><figcaption><b>Figure 2.</b> The printed linkage frame and its two steppers, without the strippers attached.</figcaption></figure>
+  <figure class="fig-small"><a class="zoom" href="wire-stripper-frame-1210.jpg"><img src="wire-stripper-frame-800.jpg" width="800" height="382" alt="Top view of a red 3D-printed frame on a wooden base, holding two stepper motors with shaft couplers and printed linkage arms between them." srcset="wire-stripper-frame-800.jpg 800w, wire-stripper-frame-1210.jpg 1210w" sizes="(min-width: 40rem) 36rem, 100vw" loading="lazy"></a><figcaption><b>Figure 3.</b> The printed linkage frame and its two steppers, without the strippers attached.</figcaption></figure>
 </section>
 
 <section class="section">
   <div class="prose">
     <h2>Electronics and firmware</h2>
-    <p>Each motor has its own stepper driver, mounted on breadboards on the same base. The firmware is register-level AVR C. The LCD interface sets the cutting parameters and shows the active settings and progress of each run.</p>
+    <p>An ATmega328 runs three A4988 stepper drivers, one per motor, from a 12 V supply. A potentiometer and pushbutton set the cutting parameters, and a 16x2 LCD shows the active settings and progress of each run. The firmware is register-level AVR C.</p>
   </div>
-  <figure><a class="zoom" href="wire-stripper-top-1600.jpg"><img src="wire-stripper-top-900.jpg" width="900" height="538" alt="Overhead view of the full build: strippers and linkage frame on the left, the feed unit and wire spool toward the lower right, and breadboards with stepper drivers and an LCD at the upper right." srcset="wire-stripper-top-900.jpg 900w, wire-stripper-top-1600.jpg 1600w" sizes="(min-width: 72rem) 68rem, 100vw" loading="lazy"></a><figcaption><b>Figure 3.</b> Top view. The stepper drivers, power module, and LCD are on the breadboards at upper right.</figcaption></figure>
+  <figure class="fig-medium"><a class="zoom" href="wire-stripper-schematic.png"><img src="wire-stripper-schematic.png" width="971" height="748" alt="Circuit schematic showing an ATmega328 microcontroller wired to an HD44780 16x2 LCD, a potentiometer, a pushbutton, and three A4988 stepper driver modules, each connected to a stepper motor coil pair." loading="lazy"></a><figcaption><b>Figure 4.</b> Circuit schematic.</figcaption></figure>
+  <figure><a class="zoom" href="wire-stripper-top-1600.jpg"><img src="wire-stripper-top-900.jpg" width="900" height="538" alt="Overhead view of the full build: strippers and linkage frame on the left, the feed unit and wire spool toward the lower right, and breadboards with stepper drivers and an LCD at the upper right." srcset="wire-stripper-top-900.jpg 900w, wire-stripper-top-1600.jpg 1600w" sizes="(min-width: 72rem) 68rem, 100vw" loading="lazy"></a><figcaption><b>Figure 5.</b> Top view. The stepper drivers, power module, and LCD are on the breadboards at upper right.</figcaption></figure>
 </section>
 
 <nav class="next" aria-label="Next project"><p>Next project</p><a href="keurig-parts.html">Printed replacement parts at Keurig Dr Pepper</a></nav>
