@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bicycle crank stress and fatigue analysis | Sahil Patel</title>
+<meta name="description" content="ANSYS FEA of a bicycle crank under a 1200 N pedal load, with Goodman fatigue and impact yield checks.">
+<meta name="theme-color" content="#f1f2f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14171b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&amp;family=Barlow+Condensed:wght@500;600&amp;display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-name" href="index.html">Sahil Patel</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html#projects">Projects</a>
+      <a href="mailto:sahptl1@gmail.com">Email</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+<a class="back" href="index.html#projects">All projects</a>
+<div class="page-head">
+  <div>
+    <h1>Bicycle crank stress and fatigue analysis</h1>
+    <p class="lead">Static FEA of a bicycle crank in ANSYS Mechanical under a 1200 N pedal load, followed by fatigue and impact checks.</p>
+  </div>
+  <dl class="titleblock"><dt>When</dt><dd>Summer 2026</dd><dt>Software</dt><dd>ANSYS Mechanical</dd><dt>Load</dt><dd>1200 N at the pedal</dd><dt>Peak stress</dt><dd>215 MPa von Mises</dd><dt>Fatigue FS</dt><dd>2.05 (Goodman, 99% reliability)</dd><dt>Impact yield FS</dt><dd>1.77</dd></dl>
+</div>
+
+<figure class="fig-medium"><a class="zoom" href="crank-model.png"><img src="crank-model.png" width="1027" height="560" alt="CAD model of a bicycle crank with five chainring arms around a square bore and a long arm ending in the pedal hole." fetchpriority="high"></a><figcaption><b>Figure 1.</b> Five chainring arms around a square spindle bore, with the pedal hole at the end of the arm.</figcaption></figure>
+
+<section class="section prose">
+  <h2>Setup</h2>
+  <p>Fixed supports on the five bolt contact faces stand in for bolt pretension and clamping. The square bore gets frictionless supports on all four faces, restraining normal motion without fully fixing it. The load is 1200 N downward on the inner face of the pedal hole, a realistic maximum for a rider in high gear.</p>
+  <p>The model uses ANSYS structural steel. In a linear static analysis under a force load, stress doesn't depend on Young's modulus, and Poisson's ratio is nearly identical to 4130's (0.30 vs. 0.29), so the stress results apply to 4130.</p>
+</section>
+
+<section class="section">
+  <div class="prose">
+    <h2>Separating singularities from real stress</h2>
+    <p>The raw maximum stresses sat at two singularities in sharp geometry, one at a three-face intersection. Sphere-of-influence refinement from 2 mm down to 0.25 mm confirmed both as singularities. The true maximum is 215 MPa von Mises, along the five chainring arms.</p>
+  </div>
+  <figure class="fig-medium"><a class="zoom" href="crank-stress.png"><img src="crank-stress.png" width="669" height="335" alt="Stress contour plot of a chainring arm with a fine mesh, colored from blue to green along the arm." loading="lazy"></a><figcaption><b>Figure 2.</b> Equivalent stress along a chainring arm, where the 215 MPa maximum occurs. The color scale (Pa) tops out at the singularity values.</figcaption></figure>
+  <div class="fig-row fig-pair-small">
+    <figure style="--ar: 1.187"><a class="zoom" href="crank-sphere.png"><img src="crank-sphere.png" width="425" height="358" alt="A translucent red sphere of influence centered on a sharp corner of the crank geometry." loading="lazy"></a><figcaption><b>Figure 3a.</b> Sphere-of-influence sizing at a three-face intersection.</figcaption></figure>
+    <figure style="--ar: 1.269"><a class="zoom" href="crank-singularity.png"><img src="crank-singularity.png" width="236" height="186" alt="Refined mesh at the same corner with a red label marking the maximum stress." loading="lazy"></a><figcaption><b>Figure 3b.</b> Refined mesh at the same point, with the maximum at the singularity.</figcaption></figure>
+  </div>
+</section>
+
+<section class="section prose">
+  <h2>Fatigue check</h2>
+  <p>Pedaling cycles the load from 0 to 1200 N, so σ<sub>a</sub> = σ<sub>m</sub> = 107.5 MPa. For quenched and tempered 4130 chromoly with S<sub>ut</sub> = 900 MPa, the uncorrected endurance limit is S<sub>e</sub>′ = 0.5 S<sub>ut</sub> = 450 MPa. Shigley's Marin factors correct it for the real part:</p>
+  <table class="factors">
+    <thead><tr><th scope="col">Factor</th><th scope="col">Value</th><th scope="col">Basis</th></tr></thead>
+    <tbody>
+      <tr><td>k<sub>a</sub>, surface</td><td>0.886</td><td>Ground finish, 1.58 S<sub>ut</sub><sup>−0.085</sup></td></tr>
+      <tr><td>k<sub>b</sub>, size</td><td>0.9</td><td>Estimated</td></tr>
+      <tr><td>k<sub>c</sub>, load</td><td>1</td><td>von Mises stress</td></tr>
+      <tr><td>k<sub>d</sub>, temperature</td><td>1</td><td>Room temperature</td></tr>
+      <tr><td>k<sub>e</sub>, reliability</td><td>0.814</td><td>99% reliability</td></tr>
+      <tr><td>k<sub>f</sub>, miscellaneous</td><td>1</td><td>None applied</td></tr>
+    </tbody>
+  </table>
+  <p class="eq"><var>S</var><sub>e</sub> = 0.886 × 0.9 × 0.814 × 450 = 292.1 MPa</p>
+  <p class="eq">1/<var>n</var> = <var>σ</var><sub>a</sub>/<var>S</var><sub>e</sub> + <var>σ</var><sub>m</sub>/<var>S</var><sub>ut</sub> = 107.5/292.1 + 107.5/900, so <var>n</var> = 2.05</p>
+</section>
+
+<section class="section prose">
+  <h2>Impact check</h2>
+  <p>A suddenly applied load doubles the static stress, so a 1200 N impact gives 2 × 215 = 430 MPa. With S<sub>y</sub> = 760 MPa, the low end of the quenched and tempered range, the yield safety factor is 760/430 = 1.77.</p>
+</section>
+
+<nav class="next" aria-label="Next project"><p>Next project</p><a href="wire-stripper.html">Automated wire stripper</a></nav>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Sahil Patel</span>
+    <a href="mailto:sahptl1@gmail.com">sahptl1@gmail.com</a>
+    <a href="https://www.linkedin.com/in/sahilpatel27">LinkedIn</a>
+  </div>
+</footer>
+<script src="site.js" defer></script>
+</body>
+</html>

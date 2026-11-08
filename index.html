@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sahil Patel, mechanical engineering portfolio</title>
+<meta name="description" content="Projects by Sahil Patel, a mechanical engineering senior at the University of Pittsburgh.">
+<meta name="theme-color" content="#f1f2f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14171b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&amp;family=Barlow+Condensed:wght@500;600&amp;display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-name" href="index.html">Sahil Patel</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#projects">Projects</a>
+      <a href="mailto:sahptl1@gmail.com">Email</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+<section class="hero">
+  <h1>Sahil Patel</h1>
+  <p>Mechanical engineering senior at the University of Pittsburgh, graduating May 2027. Previously a manufacturing engineering co-op at Keurig Dr Pepper. Selected projects, with more detail than fits on a resume.</p>
+  <ul class="contact">
+    <li><a href="mailto:sahptl1@gmail.com">sahptl1@gmail.com</a></li>
+    <li><a href="https://www.linkedin.com/in/sahilpatel27">LinkedIn</a></li>
+  </ul>
+</section>
+
+<section class="projects" id="projects" aria-labelledby="projects-title">
+  <h2 id="projects-title">Projects</h2>
+
+  <article class="project project-feature">
+    <a class="project-media" href="wire-stripper.html" tabindex="-1" aria-hidden="true"><img src="wire-stripper-hero-900.jpg" width="900" height="450" alt="" srcset="wire-stripper-hero-900.jpg 900w, wire-stripper-hero-1600.jpg 1600w" sizes="(min-width: 72rem) 68rem, 100vw" fetchpriority="high"></a>
+    <div>
+      <h3><a href="wire-stripper.html">Automated wire stripper</a></h3>
+      <p class="meta">Summer 2026, university mechatronics lab</p>
+    </div>
+    <p class="summary">Feeds wire off a spool in 0.4 mm increments and closes two hand strippers through stepper-driven linkages. Register-level AVR C firmware, with an LCD interface for cutting parameters.</p>
+  </article>
+
+  <article class="project">
+    <a class="project-media" href="keurig-parts.html" tabindex="-1" aria-hidden="true"><img src="kdp-pusher-dogs-900.jpg" width="900" height="371" alt="" srcset="kdp-pusher-dogs-900.jpg 900w, kdp-pusher-dogs-1600.jpg 1600w" sizes="(min-width: 48rem) 40rem, 100vw" loading="lazy"></a>
+    <div>
+      <h3><a href="keurig-parts.html">Printed replacement parts at Keurig Dr Pepper</a></h3>
+      <p class="meta">Manufacturing engineering co-op, July to December 2025</p>
+      <p class="summary">Printed replacement parts and changeover tools for production lines, saving more than $10,000 in total. One lead screw nut saved $700+ per part, and printed pusher dogs cost 95% less than the originals.</p>
+    </div>
+  </article>
+
+  <article class="project">
+    <a class="project-media" href="crank-analysis.html" tabindex="-1" aria-hidden="true"><img src="crank-model.png" width="1027" height="560" alt="" loading="lazy"></a>
+    <div>
+      <h3><a href="crank-analysis.html">Bicycle crank stress and fatigue analysis</a></h3>
+      <p class="meta">Summer 2026</p>
+      <p class="summary">Static FEA in ANSYS Mechanical under a 1200 N pedal load, with a mesh convergence study separating two singularities from the true 215 MPa peak. Fatigue safety factor of 2.05 (Goodman with Marin factors, 99% reliability) and impact yield safety factor of 1.77.</p>
+    </div>
+  </article>
+</section>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Sahil Patel</span>
+    <a href="mailto:sahptl1@gmail.com">sahptl1@gmail.com</a>
+    <a href="https://www.linkedin.com/in/sahilpatel27">LinkedIn</a>
+  </div>
+</footer>
+<script src="site.js" defer></script>
+</body>
+</html>

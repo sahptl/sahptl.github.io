@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automated wire stripper | Sahil Patel</title>
+<meta name="description" content="A stepper-driven automated wire stripper with 0.4 mm feed increments and register-level AVR C firmware.">
+<meta name="theme-color" content="#f1f2f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14171b" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&amp;family=Barlow+Condensed:wght@500;600&amp;display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-name" href="index.html">Sahil Patel</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html#projects">Projects</a>
+      <a href="mailto:sahptl1@gmail.com">Email</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+<a class="back" href="index.html#projects">All projects</a>
+<div class="page-head">
+  <div>
+    <h1>Automated wire stripper</h1>
+    <p class="lead">A bench-top machine that feeds wire off a spool in 0.4 mm increments and closes two hand strippers through stepper-driven linkages.</p>
+  </div>
+  <dl class="titleblock"><dt>When</dt><dd>Summer 2026</dd><dt>Where</dt><dd>University mechatronics lab</dd><dt>Firmware</dt><dd>AVR C, register level</dd><dt>Feed increment</dt><dd>0.4 mm</dd></dl>
+</div>
+
+<figure><a class="zoom" href="wire-stripper-hero-1600.jpg"><img src="wire-stripper-hero-900.jpg" width="900" height="450" alt="Bench-top wire stripper on a wooden base: a wire spool on the right, red 3D-printed feed rollers in the middle, and two blue-handled hand strippers on printed linkages at the left." srcset="wire-stripper-hero-900.jpg 900w, wire-stripper-hero-1600.jpg 1600w" sizes="(min-width: 72rem) 68rem, 100vw" fetchpriority="high"></a><figcaption><b>Figure 1.</b> Wire runs from the spool (right) through the feed rollers and guide tubes to the strippers (left).</figcaption></figure>
+
+<section class="section">
+  <div class="prose">
+    <h2>How it works</h2>
+    <p>A stepper drives a pair of rubber-banded pinch rollers that pull wire off the spool and push it through guide tubes to the strippers. Two more steppers on a printed frame drive the linkages that close the stripper handles. I sized the motors and drivers from a torque-speed analysis.</p>
+  </div>
+  <figure class="fig-small"><a class="zoom" href="wire-stripper-frame-1210.jpg"><img src="wire-stripper-frame-800.jpg" width="800" height="382" alt="Top view of a red 3D-printed frame on a wooden base, holding two stepper motors with shaft couplers and printed linkage arms between them." srcset="wire-stripper-frame-800.jpg 800w, wire-stripper-frame-1210.jpg 1210w" sizes="(min-width: 40rem) 36rem, 100vw" loading="lazy"></a><figcaption><b>Figure 2.</b> The printed linkage frame and its two steppers, without the strippers attached.</figcaption></figure>
+</section>
+
+<section class="section">
+  <div class="prose">
+    <h2>Electronics and firmware</h2>
+    <p>Each motor has its own stepper driver, mounted on breadboards on the same base. The firmware is register-level AVR C. The LCD interface sets the cutting parameters and shows the active settings and progress of each run.</p>
+  </div>
+  <figure><a class="zoom" href="wire-stripper-top-1600.jpg"><img src="wire-stripper-top-900.jpg" width="900" height="538" alt="Overhead view of the full build: strippers and linkage frame on the left, the feed unit and wire spool toward the lower right, and breadboards with stepper drivers and an LCD at the upper right." srcset="wire-stripper-top-900.jpg 900w, wire-stripper-top-1600.jpg 1600w" sizes="(min-width: 72rem) 68rem, 100vw" loading="lazy"></a><figcaption><b>Figure 3.</b> Top view. The stepper drivers, power module, and LCD are on the breadboards at upper right.</figcaption></figure>
+</section>
+
+<nav class="next" aria-label="Next project"><p>Next project</p><a href="keurig-parts.html">Printed replacement parts at Keurig Dr Pepper</a></nav>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Sahil Patel</span>
+    <a href="mailto:sahptl1@gmail.com">sahptl1@gmail.com</a>
+    <a href="https://www.linkedin.com/in/sahilpatel27">LinkedIn</a>
+  </div>
+</footer>
+<script src="site.js" defer></script>
+</body>
+</html>
